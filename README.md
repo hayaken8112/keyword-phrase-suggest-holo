@@ -18,6 +18,6 @@ HoloLens RS5
 Visual Studio 2017
 
 ## How to build
+* Initialize the project with mixed-reality-toolkit
 * Build the "KeywordPhrase" Scene
-* The unity project needs to be initialized with mixed-reality-toolkit
 * Open the solution file in your build directory and build with visual studio
