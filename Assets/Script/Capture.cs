@@ -26,7 +26,7 @@ public class Capture : MonoBehaviour
             debugText.text = "no camera";
         }
         WebCamDevice[] devices = WebCamTexture.devices;
-        webcam = new WebCamTexture(devices[0].name, 896, 504, 15);
+        webcam = new WebCamTexture(devices[0].name, 896, 504, 3);
 
         // quadRenderer = quad.GetComponent<Renderer>() as Renderer;
         // displayImage.texture = webcam;

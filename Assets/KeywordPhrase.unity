@@ -1289,8 +1289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c38b525638f5fe741b323d3cc1124dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uploadtime: 1
-  captionTime: 3
+  uploadtime: 3
+  captionTime: 5
   displayImage: {fileID: 0}
   suggestionManager: {fileID: 947866366}
   debugText: {fileID: 842297438}

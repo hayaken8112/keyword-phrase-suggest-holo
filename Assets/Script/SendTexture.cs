@@ -50,15 +50,24 @@ public class SendTexture : MonoBehaviour
         {
             // POSTに成功した場合，レスポンスコードを出力
             Debug.Log(request.responseCode);
-            // Debug.Log(request.downloadHandler.text);
-            string responseText = request.downloadHandler.text;
-            Captions captions = JsonUtility.FromJson<Captions>(responseText);
-            phraseManager.UpdatePhrase(captions.caption);
-            foreach(string cap in captions.caption) {
-                Debug.Log(cap);
+            if (request.responseCode == 200) {
+                // Debug.Log(request.downloadHandler.text);
+                string responseText = request.downloadHandler.text;
+                Captions captions = null;
+                try {
+                    captions = JsonUtility.FromJson<Captions>(responseText);
+                } catch (Exception e) {
+                    Debug.Log(e);
+                }
+                if (captions != null){
+                    phraseManager.UpdatePhrase(captions.caption);
+                }
+                foreach(string cap in captions.caption) {
+                    Debug.Log(cap);
+                }
+                // var resList = Serialization.CreateFromJSON(responseText);
+                // text.text = resList.message;
             }
-            // var resList = Serialization.CreateFromJSON(responseText);
-            // text.text = resList.message;
         }
 
     }
@@ -85,16 +94,20 @@ public class SendTexture : MonoBehaviour
             // POSTに成功した場合，レスポンスコードを出力
             Debug.Log(request.responseCode);
             // Debug.Log(request.downloadHandler.text);
-            string responseText = request.downloadHandler.text;
-            Debug.Log(responseText);
-            var resData = ResponseData.CreateFromJSON(responseText);
-            List<string> keywords = new List<string>();
-            foreach(var data in resData.data){
-                keywords.Add(data);
+            if (request.responseCode == 200){
+                string responseText = request.downloadHandler.text;
+                Debug.Log(responseText);
+                var resData = ResponseData.CreateFromJSON(responseText);
+                List<string> keywords = new List<string>();
+                if (resData != null) {
+                    foreach(var data in resData.data){
+                        keywords.Add(data);
+                    }
+                }
+                suggestionManager.UpdateSuggestedWords(keywords);
+                // var resList = Serialization.CreateFromJSON(responseText);
+                // text.text = resList.message;
             }
-            suggestionManager.UpdateSuggestedWords(keywords);
-            // var resList = Serialization.CreateFromJSON(responseText);
-            // text.text = resList.message;
         }
 
     }

@@ -9,7 +9,13 @@ public class ResponseData {
 
     public static ResponseData CreateFromJSON(string jsonString)
     {
-        return JsonUtility.FromJson<ResponseData>(jsonString);
+        ResponseData resData = null;
+        try {
+            resData = JsonUtility.FromJson<ResponseData>(jsonString);
+        } catch (Exception e) {
+            Debug.Log(e);
+        }
+        return resData;
     }
 }
 
